@@ -3,13 +3,25 @@
 from enemies import *
 from hero import *
 
-def annoying_input_int(message =''):
+def annoying_input_int(message ='', dragon=''):
     answer = None
     while answer == None:
-        try:
-            answer = int(input(message))
-        except ValueError:
-            print('Вы ввели недопустимые символы')
+        if str(type(dragon)).find('Dragon') != -1 or str(type(dragon)).find('Random') != -1:
+            try:
+                answer = int(input(message))
+            except ValueError:
+                print('Вы ввели недопустимые символы')
+        elif str(type(dragon)).find('Simple') != -1:
+            try:
+                answer = bool(input(message))
+            except ValueError:
+                print('Вы ввели недопустимые символы')
+        elif str(type(dragon)).find('Mult') != -1:
+            try:
+                # print(type(input(message)))
+                answer = str(input(message))
+            except ValueError:
+                print('Вы ввели недопустимые символы')
     return answer
 
 
@@ -18,7 +30,7 @@ def game_tournament(hero, dragon_list):
         print('Вышел', dragon._color, 'дракон!')
         while dragon.is_alive() and hero.is_alive():
             print('Вопрос:', dragon.question())
-            answer = annoying_input_int('Ответ:')
+            answer = annoying_input_int('Ответ:', dragon)
 
             if dragon.check_answer(answer):
                 hero.attack(dragon)
