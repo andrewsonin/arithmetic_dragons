@@ -9,9 +9,9 @@ from gameunit import *
 
 """
 class Hero(Attacker):
-    _health = 100
-    _attack = 50
     _experience = 0
 
     def __init__(self, name=''):
-        self.name = name
+        self._name = name
+        self._health = 100
+        self._attack = 50
