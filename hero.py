@@ -15,3 +15,7 @@ class Hero(Attacker):
         self._name = name
         self._health = 100
         self._attack = 50
+
+    def attack(self, target):
+        target._health -= self._attack
+        self._experience += 10
